@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Goblin Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nunito:wght@500;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0a0614;--ink:#f3ecff;--mute:#b3a6d6;--green:#39ff7a;--pink:#ff2bd6;--cyan:#22e4ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.6;overflow-x:hidden;background-image:radial-gradient(55% 45% at 75% 25%,#4a12806a,transparent),radial-gradient(45% 40% at 5% 70%,#0b4a3a55,transparent)}
+h1,h2,.logo{font-family:'Bungee','Impact',sans-serif;font-weight:400;line-height:1.1;margin:0}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:20;background:#0a0614f2;border-bottom:1px solid #39ff7a33}
+nav{display:flex;align-items:center;justify-content:space-between;gap:12px;height:60px}
+.logo{font-size:20px;color:var(--green);text-shadow:0 0 8px var(--green),0 0 22px #39ff7a88}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-weight:800}
+nav li a{color:var(--mute)}nav li a:hover{color:var(--cyan);text-shadow:0 0 10px var(--cyan)}
+.btn{display:inline-block;font-weight:800;padding:12px 24px;border-radius:12px;border:2px solid var(--green);color:#fff;background:#39ff7a1c;box-shadow:0 0 14px #39ff7a88,inset 0 0 12px #39ff7a44;cursor:pointer;font:inherit;font-weight:800;transition:.2s}
+.btn:hover{background:var(--green);color:#06210f;box-shadow:0 0 28px var(--green)}
+.hero{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px;align-items:center;padding:40px 0 30px}
+.sign{font-size:clamp(42px,7vw,80px);color:#eaffef;text-shadow:0 0 6px var(--green),0 0 18px var(--green),0 0 44px var(--green);animation:flick 2.4s .3s 1 both}
+.sign span{display:block;color:#ffe9fb;text-shadow:0 0 6px var(--pink),0 0 18px var(--pink),0 0 44px var(--pink)}
+@keyframes flick{0%,18%,22%,60%,64%{opacity:.25}20%,62%,100%{opacity:1}30%{opacity:.8}40%{opacity:.4}50%{opacity:1}}
+.hero p{font-size:19px;color:var(--mute);max-width:42ch;margin:18px 0 26px}
+.gobi{position:relative}.gobi::before{content:"";position:absolute;inset:6% 2% 0;background:radial-gradient(closest-side,#39ff7a55,#39ff7a1c 60%,transparent);pointer-events:none}.gobi svg{position:relative;z-index:1}.bw{animation:br 3.6s ease-in-out infinite;transform-origin:50% 100%;will-change:transform;position:relative;z-index:1}
+.bubble{position:absolute;top:0;left:0;max-width:min(260px,62%);padding:10px 14px;border:2px solid var(--cyan);border-radius:16px;background:#fff;color:#1a0f33;font-weight:800;font-size:15px;line-height:1.35;box-shadow:0 0 18px #22e4ff88,inset 0 0 12px #22e4ff33;opacity:0;transform:translateY(6px) scale(.96);transition:opacity .35s,transform .35s;pointer-events:none;z-index:2}
+.bubble::after{content:"";position:absolute;right:28px;bottom:-11px;width:16px;height:16px;background:#fff;border-right:2px solid var(--cyan);border-bottom:2px solid var(--cyan);transform:rotate(45deg)}
+.bubble.on{opacity:1;transform:none}
+.gobi svg{width:100%;height:auto;display:block;overflow:visible}
+.breathe{}
+@keyframes br{50%{transform:scale(1.014,1.022)}}
+.lid{transform-box:fill-box;transform-origin:50% 0;animation:blink 5s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(.18)}95%{transform:scaleY(1.05)}}
+.earL{transform-box:fill-box;transform-origin:90% 60%;animation:tw 6s 1s infinite}
+.earR{transform-box:fill-box;transform-origin:10% 60%;animation:tw 7s 3s infinite}
+@keyframes tw{0%,88%,100%{transform:rotate(0)}92%{transform:rotate(-7deg)}96%{transform:rotate(3deg)}}
+.gem{}
+@keyframes gem{50%{opacity:.55}}
+.tongue{transform-box:fill-box;transform-origin:50% 0;animation:tg 4s infinite}
+@keyframes tg{0%,70%,100%{transform:scaleY(1)}80%{transform:scaleY(1.25)}}
+section{padding:50px 0}
+h2{font-size:clamp(26px,4vw,38px);margin-bottom:10px;color:var(--cyan);text-shadow:0 0 12px #22e4ff99}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:22px}
+.fact{border:1px solid #ff2bd666;border-radius:14px;padding:14px 16px;background:#ff2bd60f}
+.fact b{display:block;color:var(--pink);text-shadow:0 0 10px #ff2bd699}
+.box{text-align:center;border:2px solid var(--cyan);border-radius:22px;padding:40px 20px;box-shadow:0 0 30px #22e4ff55,inset 0 0 30px #22e4ff22;background:#0d1a3a66}
+form{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+input{font:inherit;padding:12px 16px;border-radius:12px;border:2px solid #22e4ff88;background:#08051a;color:var(--ink);min-width:min(300px,100%)}
+#msg{margin-top:12px;color:var(--green);font-weight:800;min-height:1.5em}
+footer{padding:34px 0 50px;text-align:center;color:var(--mute);border-top:1px solid #39ff7a33;font-size:14px}
+.shut{opacity:0;transition:opacity .15s}
+.closed .shut{opacity:1}
+.closed .lid{animation:none;transform:scaleY(1.05)}
+.closed .pup{opacity:0}
+.closed .breathe{animation-duration:2s}
+main,footer{position:relative;z-index:1}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.gobi svg{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.gobi svg.poke{animation:pk .45s ease-out}
+@keyframes pk{30%{transform:scale(1.06,.93)}65%{transform:scale(.97,1.04)}}
+.gobi svg.party{animation:hue .9s linear infinite,dance .5s ease-in-out infinite alternate}
+@keyframes hue{from{filter:hue-rotate(0)}to{filter:hue-rotate(360deg)}}
+@keyframes dance{from{transform:rotate(-3deg) translateY(0)}to{transform:rotate(3deg) translateY(-8px)}}
+.toys{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:22px;position:relative;z-index:60}
+.toys .btn{padding:8px 16px}
+.sw{display:flex;gap:8px;align-items:center}
+.sw button{width:30px;height:30px;border-radius:50%;border:2px solid #fff6;cursor:pointer;padding:0}
+.sw button:hover,.sw button[aria-pressed=true]{border-color:#fff;box-shadow:0 0 12px currentColor}
+.hint{color:var(--mute);font-size:14px;margin:12px 0 0}
+body.off{background-image:none}
+body.off .sign,body.off .sign span,body.off .logo,body.off h2{text-shadow:none;opacity:.7}
+body.off::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;background:radial-gradient(circle 190px at var(--mx,50%) var(--my,40%),transparent 30%,rgba(3,1,8,.95) 100%)}
+.diary{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:18px}
+.entry{border:1px solid #39ff7a55;border-radius:14px;padding:16px 18px;background:#39ff7a0d}
+.entry b{display:block;color:var(--green);font-family:'Bungee',sans-serif;font-weight:400;font-size:15px;margin-bottom:6px;text-shadow:0 0 8px #39ff7a88}
+.redact{background:#05020c;color:transparent;border-radius:4px;padding:0 3px;cursor:help;transition:.25s;outline-offset:2px}
+.redact:hover,.redact:focus{background:#ff2bd633;color:var(--ink)}
+.navr{display:flex;gap:10px;align-items:center}
+.lang{position:relative}
+.lang>.btn{padding:8px 14px;border-color:var(--cyan);box-shadow:0 0 12px #22e4ff88,inset 0 0 10px #22e4ff33}
+.lang>.btn:hover{background:var(--cyan);color:#041a22;box-shadow:0 0 24px var(--cyan)}
+#langMenu{position:absolute;inset-inline-end:0;top:calc(100% + 8px);margin:0;padding:8px;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px;min-width:250px;background:#140a2a;border:2px solid var(--cyan);border-radius:14px;box-shadow:0 0 24px #22e4ff66;z-index:80}
+#langMenu[hidden]{display:none}
+#langMenu button{width:100%;font:inherit;font-weight:800;color:var(--ink);background:none;border:1px solid transparent;border-radius:8px;padding:8px 10px;text-align:start;cursor:pointer}
+#langMenu button:hover,#langMenu button[aria-current=true]{border-color:var(--green);background:#39ff7a1a;color:var(--green)}
+@media(max-width:520px){.navr [data-i=ns]{display:none}.logo{font-size:17px}}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.gobi{order:-1;max-width:420px;margin:0 auto}nav ul{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+<a class="logo" href="#top">Goblin Studio</a>
+<ul><li><a href="#gobi">Gobi</a></li><li><a href="#diary" data-i="nd">Diary</a></li><li><a href="#bulten" data-i="nn">Newsletter</a></li></ul>
+<div class="navr"><div class="lang"><button class="btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" data-i="lg">Language</button><ul id="langMenu" role="menu" hidden></ul></div><a class="btn" href="#bulten" style="padding:8px 16px" data-i="ns">Stay in the loop</a></div>
+</nav></div></header>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+<main id="top">
+<div class="wrap hero">
+<div>
+<h1 class="sign">Goblin<span>Studio</span></h1>
+<p data-i="hp">New games are on the way. For now, meet the studio's owner: Gobi.</p>
+<a class="btn" href="#bulten" data-i="hc">Get notified about new games</a>
+<div class="toys">
+<button class="btn" id="ask" type="button" data-i="ha">Ask Gobi</button>
+<div class="sw" role="group" aria-label="Hat color">
+<button type="button" aria-pressed="true" aria-label="Purple hat" data-s="#a971ff,#5a24c8,#2a0c70" style="background:#7a3cff;color:#7a3cff"></button>
+<button type="button" aria-pressed="false" aria-label="Red hat" data-s="#ff8a9a,#d11a3a,#6a0820" style="background:#d11a3a;color:#d11a3a"></button>
+<button type="button" aria-pressed="false" aria-label="Blue hat" data-s="#8adfff,#1a6fd1,#082a70" style="background:#1a6fd1;color:#1a6fd1"></button>
+<button type="button" aria-pressed="false" aria-label="Gold hat" data-s="#fff0a8,#e8a820,#8a5a08" style="background:#e8a820;color:#e8a820"></button>
+</div>
+<button class="btn" id="lights" type="button" aria-pressed="false">Lights: on</button>
+</div>
+<p class="hint" data-i="hh">Poke Gobi. Ask him a question. Turn off the lights. Or type "gobi" on your keyboard.</p>
+</div>
+
+<div class="gobi" id="gobiArt">
+<div class="bw"><svg viewBox="0 0 400 450" role="img" aria-label="Gobi, a highly detailed hand-drawn-style goblin whose eyes follow your cursor and close while you type your email">
+<defs>
+<radialGradient id="skin" cx="42%" cy="32%" r="78%"><stop offset="0" stop-color="#a4ffa8"/><stop offset=".4" stop-color="#47dc6e"/><stop offset="1" stop-color="#17803f"/></radialGradient>
+<radialGradient id="ear" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#ffb3e2"/><stop offset="1" stop-color="#a02a72"/></radialGradient>
+<radialGradient id="iris" cx="50%" cy="42%" r="62%"><stop offset="0" stop-color="#fff6b0"/><stop offset=".45" stop-color="#ffb629"/><stop offset=".85" stop-color="#c2410c"/><stop offset="1" stop-color="#5a1a05"/></radialGradient>
+<linearGradient id="hat" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#a971ff"/><stop offset=".6" stop-color="#5a24c8"/><stop offset="1" stop-color="#2a0c70"/></linearGradient>
+<linearGradient id="vest" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9a6630"/><stop offset="1" stop-color="#3a200d"/></linearGradient>
+<radialGradient id="mouth" cx="50%" cy="25%" r="85%"><stop offset="0" stop-color="#8a1740"/><stop offset="1" stop-color="#220412"/></radialGradient>
+<radialGradient id="shade" cx="50%" cy="48%" r="56%"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#04281a" stop-opacity=".6"/></radialGradient>
+<radialGradient id="halo"><stop offset="0" stop-color="#22e4ff" stop-opacity=".55"/><stop offset="1" stop-color="#22e4ff" stop-opacity="0"/></radialGradient>
+<radialGradient id="gemg" cx="38%" cy="32%" r="72%"><stop offset="0" stop-color="#f0ffff"/><stop offset=".45" stop-color="#22e4ff"/><stop offset="1" stop-color="#083e6e"/></radialGradient>
+<pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(38)"><line x1="0" y1="0" x2="0" y2="5" stroke="#04281a" stroke-width="1.3"/></pattern>
+<pattern id="leather" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#2a1507" opacity=".5"/><circle cx="6.5" cy="6" r="1.2" fill="#c98a4a" opacity=".35"/></pattern>
+<filter id="tex" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 .02  0 0 0 0 .28  0 0 0 0 .1  1.7 0 0 0 -.72" result="t"/><feComposite in="t" in2="SourceAlpha" operator="in" result="tt"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="tt"/></feMerge></filter>
+<filter id="g2"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<clipPath id="headClip"><path d="M200 118 C262 118 312 150 322 196 C326 214 330 234 330 254 C332 276 324 292 314 306 C308 318 304 332 298 342 C292 354 280 360 266 364 C256 372 246 386 226 390 C212 393 188 393 174 390 C154 386 144 372 134 364 C120 360 108 354 102 342 C96 332 92 318 86 306 C76 292 68 276 70 254 C70 234 74 214 78 196 C88 150 138 118 200 118Z"/></clipPath>
+<clipPath id="hatClip"><path id="hatP" d="M60 190 C66 150 96 118 136 98 C186 72 232 48 280 30 C320 16 364 24 384 60 C392 76 392 92 384 100 C374 94 356 94 344 104 C326 118 316 138 322 160 C326 174 336 182 348 190 C300 172 250 164 200 164 C140 164 96 174 60 190Z"/></clipPath>
+<clipPath id="cL"><ellipse cx="150" cy="238" rx="30" ry="25"/></clipPath>
+<clipPath id="cR"><ellipse cx="250" cy="238" rx="30" ry="25"/></clipPath>
+<g id="earShape">
+<path d="M106 226 C70 214 34 178 4 114 C48 124 90 146 120 176Z" fill="url(#skin)" stroke="#0b3a1f" stroke-width="5" stroke-linejoin="round"/>
+<path d="M100 214 C74 204 48 182 28 146 C58 152 86 168 108 190Z" fill="url(#ear)"/>
+<path d="M100 214 C74 204 48 182 28 146 C58 152 86 168 108 190Z" fill="url(#hatch)" opacity=".18"/>
+<path d="M94 208 C72 196 54 180 42 160 M98 198 C82 188 68 176 58 162 M102 190 C88 182 76 174 68 164 M90 214 C66 204 52 190 40 174" stroke="#7a1d57" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path d="M28 126 C52 134 76 148 96 168" stroke="#c4ffcc" stroke-width="3" fill="none" opacity=".55" stroke-linecap="round"/>
+<path d="M110 216 q-8 4 -6 12 M104 206 q-8 2 -8 10" stroke="#0b3a1f" stroke-width="2" fill="none" stroke-linecap="round"/>
+<g stroke="#0b3a1f" stroke-width="1.4" stroke-linecap="round"><path d="M96 206 l-8 -5 M92 212 l-9 -2 M98 200 l-6 -7"/></g>
+<circle cx="16" cy="118" r="3.4" fill="#ffb629" stroke="#5a3a00" stroke-width="1.5"/><path d="M16 121 v12" stroke="#ffb629" stroke-width="2.2"/><circle cx="16" cy="136" r="4" fill="#22e4ff" stroke="#05324a" stroke-width="1.5"/>
+<circle cx="60" cy="152" r="3" fill="#ffd6f0" stroke="#7a1d57" stroke-width="1"/>
+</g>
+</defs>
+
+<g class="breathe">
+<!-- body: vest -->
+<path d="M44 450 C44 396 118 370 200 374 C282 370 356 396 356 450Z" fill="url(#vest)" stroke="#2a1507" stroke-width="5"/>
+<path d="M44 450 C44 396 118 370 200 374 C282 370 356 396 356 450Z" fill="url(#leather)"/>
+<path d="M44 450 C44 396 118 370 200 374 C282 370 356 396 356 450 H320 C310 410 270 394 250 392 L200 450 L150 392 C130 394 90 410 80 450Z" fill="url(#hatch)" opacity=".22"/>
+<path d="M148 380 L200 446 L252 380 Q200 400 148 380Z" fill="#2fc95f"/>
+<path d="M122 386 C100 404 90 426 88 450 M278 386 C300 404 310 426 312 450" stroke="#e8c98a" stroke-width="2.4" stroke-dasharray="5 4" fill="none" stroke-linecap="round"/>
+<path d="M108 380 C126 372 150 372 160 380 C150 392 134 396 118 394 C112 392 106 386 108 380Z M292 380 C274 372 250 372 240 380 C250 392 266 396 282 394 C288 392 294 386 292 380Z" fill="#7a5530"/>
+<g stroke="#4a3118" stroke-width="1.6" stroke-linecap="round"><path d="M114 382 l-4 -5 M122 378 l-2 -6 M132 376 l0 -6 M142 377 l2 -6 M152 380 l4 -5 M286 382 l4 -5 M278 378 l2 -6 M268 376 l0 -6 M258 377 l-2 -6 M248 380 l-4 -5"/></g>
+<circle cx="216" cy="420" r="8" fill="#d9a441" stroke="#5a3a00" stroke-width="2.5"/><circle cx="214" cy="418" r="2.4" fill="#fff2b0"/>
+<circle cx="220" cy="444" r="7" fill="#d9a441" stroke="#5a3a00" stroke-width="2.5"/>
+<g transform="rotate(-8 106 430)"><rect x="90" y="414" width="34" height="30" rx="5" fill="#b02f80"/><path d="M94 420 h26 M94 428 h26 M94 436 h26" stroke="#ffd6f0" stroke-width="1.6" stroke-dasharray="3 3"/></g>
+<path d="M300 420 l22 -4 l-2 22 l-22 2Z" fill="#2a8fb0" opacity=".9"/><path d="M304 426 l14 -2 M304 432 l14 -2" stroke="#d8f8ff" stroke-width="1.4" stroke-dasharray="3 3"/>
+<!-- necklace -->
+<path d="M126 372 C148 428 252 428 274 372" stroke="#d9a441" stroke-width="3.6" fill="none"/>
+<g fill="#fff6d8" stroke="#6a5a20" stroke-width="1.6" stroke-linejoin="round"><path d="M150 410 l-4 14 l8 -4Z"/><path d="M166 420 l-3 14 l8 -5Z"/><path d="M234 420 l3 14 l-8 -5Z"/><path d="M250 410 l4 14 l-8 -4Z"/></g>
+<circle cx="200" cy="432" r="30" fill="url(#halo)"/><g><path d="M200 414 L217 429 L200 454 L183 429Z" fill="url(#gemg)" stroke="#05324a" stroke-width="2.6" stroke-linejoin="round"/><path d="M183 429H217M200 414V454M191 421L200 429L209 421" stroke="#fff" stroke-width="1.3" opacity=".75" fill="none"/></g>
+<!-- neck -->
+<path d="M154 336 C156 372 170 386 200 390 C230 386 244 372 246 336Z" fill="url(#skin)" stroke="#0b3a1f" stroke-width="5"/>
+<path d="M154 336 C156 372 170 386 200 390 C230 386 244 372 246 336Z" fill="url(#hatch)" opacity=".35"/>
+<path d="M174 366 Q200 380 226 366 M178 376 Q200 388 222 376" stroke="#0f6a34" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+<!-- ears -->
+<g class="earL"><use href="#earShape"/></g>
+<g class="earR"><use href="#earShape" transform="translate(400,0) scale(-1,1)"/></g>
+
+<!-- head -->
+<path d="M200 118 C262 118 312 150 322 196 C326 214 330 234 330 254 C332 276 324 292 314 306 C308 318 304 332 298 342 C292 354 280 360 266 364 C256 372 246 386 226 390 C212 393 188 393 174 390 C154 386 144 372 134 364 C120 360 108 354 102 342 C96 332 92 318 86 306 C76 292 68 276 70 254 C70 234 74 214 78 196 C88 150 138 118 200 118Z" fill="url(#skin)" stroke="#0b3a1f" stroke-width="5"/>
+<path d="M200 118 C262 118 312 150 322 196 C326 214 330 234 330 254 C332 276 324 292 314 306 C308 318 304 332 298 342 C292 354 280 360 266 364 C256 372 246 386 226 390 C212 393 188 393 174 390 C154 386 144 372 134 364 C120 360 108 354 102 342 C96 332 92 318 86 306 C76 292 68 276 70 254 C70 234 74 214 78 196 C88 150 138 118 200 118Z" fill="url(#shade)"/>
+<g clip-path="url(#headClip)">
+<path d="M72 270 C84 352 150 380 200 380 C250 380 316 352 328 270 C304 336 250 354 200 354 C150 354 96 336 72 270Z" fill="url(#hatch)" opacity=".5"/>
+<path d="M70 190 C76 250 90 290 104 310 C94 270 92 230 100 196Z M330 190 C324 250 310 290 296 310 C306 270 308 230 300 196Z" fill="url(#hatch)" opacity=".4"/>
+<ellipse cx="156" cy="168" rx="42" ry="16" fill="#d6ffd8" opacity=".3" transform="rotate(-18 156 168)"/>
+<ellipse cx="110" cy="298" rx="28" ry="17" fill="#ff7bd5" opacity=".28"/><ellipse cx="290" cy="298" rx="28" ry="17" fill="#ff7bd5" opacity=".28"/>
+<ellipse cx="118" cy="288" rx="14" ry="6" fill="#d6ffd8" opacity=".25" transform="rotate(-20 118 288)"/><ellipse cx="282" cy="288" rx="14" ry="6" fill="#d6ffd8" opacity=".25" transform="rotate(20 282 288)"/>
+</g>
+<g clip-path="url(#headClip)">
+<path d="M70 196 C100 186 150 190 192 210 L192 226 C150 206 104 206 70 222Z M330 196 C300 186 250 190 208 210 L208 226 C250 206 296 206 330 222Z" fill="#04281a" opacity=".22"/>
+<path d="M84 304 C98 322 112 346 140 368 C120 366 98 352 84 330Z M316 304 C302 322 288 346 260 368 C280 366 302 352 316 330Z" fill="#04281a" opacity=".3"/>
+<path d="M96 262 C84 244 82 226 90 208 C92 234 100 250 112 262Z M304 262 C316 244 318 226 310 208 C308 234 300 250 288 262Z" fill="#d6ffd8" opacity=".28"/>
+<ellipse cx="200" cy="378" rx="30" ry="10" fill="#d6ffd8" opacity=".28"/>
+<ellipse cx="122" cy="276" rx="16" ry="8" fill="#d6ffd8" opacity=".3" transform="rotate(-30 122 276)"/><ellipse cx="278" cy="276" rx="16" ry="8" fill="#d6ffd8" opacity=".3" transform="rotate(30 278 276)"/>
+<path d="M100 344 C122 366 146 380 172 386 M300 344 C278 366 254 380 228 386" stroke="#0f6a34" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".7"/>
+<path d="M196 378 q4 6 8 0" stroke="#0f6a34" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<!-- wrinkles -->
+<g stroke="#0f6a34" fill="none" stroke-linecap="round">
+<g stroke-width="2.4"><path d="M148 176 Q200 160 252 176"/><path d="M160 188 Q200 178 240 188"/><path d="M176 168 Q200 162 224 168"/></g>
+<g stroke-width="2"><path d="M110 266 q-10 8 -8 20 M104 262 q-12 6 -12 18"/><path d="M290 266 q10 8 8 20 M296 262 q12 6 12 18"/><path d="M118 224 q-14 0 -20 8 M120 232 q-12 4 -16 12 M282 224 q14 0 20 8 M280 232 q12 4 16 12"/></g>
+<g stroke-width="2.2"><path d="M124 258 Q150 276 176 260"/><path d="M276 258 Q250 276 224 260"/><path d="M128 266 Q150 280 170 268 M272 266 Q250 280 230 268"/></g>
+<g stroke-width="2.4"><path d="M168 300 C150 312 138 330 142 352"/><path d="M232 300 C250 312 262 330 258 352"/></g>
+<path d="M192 368 q8 4 16 0" stroke-width="2"/>
+</g>
+<g fill="#0f6a34" opacity=".75"><circle cx="128" cy="322" r="1.6"/><circle cx="136" cy="332" r="1.6"/><circle cx="146" cy="326" r="1.6"/><circle cx="120" cy="334" r="1.4"/><circle cx="272" cy="322" r="1.6"/><circle cx="264" cy="332" r="1.6"/><circle cx="254" cy="326" r="1.6"/><circle cx="280" cy="334" r="1.4"/><circle cx="170" cy="352" r="1.6"/><circle cx="230" cy="352" r="1.6"/><circle cx="200" cy="360" r="1.6"/><circle cx="184" cy="346" r="1.6"/><circle cx="216" cy="346" r="1.6"/><circle cx="160" cy="344" r="1.4"/><circle cx="240" cy="344" r="1.4"/></g>
+<g fill="#d6ffd0" opacity=".65"><circle cx="106" cy="226" r="1.8"/><circle cx="116" cy="216" r="1.4"/><circle cx="296" cy="224" r="1.8"/><circle cx="286" cy="214" r="1.4"/><circle cx="134" cy="274" r="1.5"/><circle cx="268" cy="276" r="1.5"/><circle cx="124" cy="282" r="1.2"/><circle cx="278" cy="284" r="1.2"/></g>
+<!-- warts & pimples -->
+<g><circle cx="116" cy="202" r="7.5" fill="#33b85e" stroke="#0b3a1f" stroke-width="2.4"/><circle cx="114" cy="200" r="2.2" fill="#c8ffc8"/><path d="M112 206 q4 3 8 0" stroke="#0b3a1f" stroke-width="1.2" fill="none"/>
+<circle cx="288" cy="206" r="9.5" fill="#33b85e" stroke="#0b3a1f" stroke-width="2.4"/><circle cx="285" cy="203" r="2.6" fill="#c8ffc8"/><path d="M282 212 q6 4 11 0" stroke="#0b3a1f" stroke-width="1.2" fill="none"/>
+<circle cx="298" cy="228" r="4.6" fill="#33b85e" stroke="#0b3a1f" stroke-width="2"/><circle cx="216" cy="146" r="5.4" fill="#33b85e" stroke="#0b3a1f" stroke-width="2"/>
+<circle cx="146" cy="330" r="4" fill="#ff7a7a" stroke="#8a1b1b" stroke-width="1.6"/><circle cx="145" cy="329" r="1.2" fill="#fff"/></g>
+<!-- scar -->
+<path d="M262 262 L286 298" stroke="#d63a78" stroke-width="4.2" stroke-linecap="round"/><path d="M260 276 l14 -7 M266 286 l14 -7 M272 296 l-13 5 M259 268 l9 -5" stroke="#6a0f3a" stroke-width="1.8" stroke-linecap="round"/>
+
+<!-- eyes -->
+<ellipse cx="150" cy="238" rx="31" ry="26" fill="#fffbe8" stroke="#0b3a1f" stroke-width="5"/>
+<g clip-path="url(#cL)"><path d="M120 230 q10 -4 16 16 M180 232 q-8 -4 -12 14 M124 246 q8 -2 14 6 M178 246 q-8 -2 -12 6" stroke="#e85b5b" stroke-width="1.3" fill="none" opacity=".75"/>
+<ellipse cx="150" cy="238" rx="31" ry="26" fill="url(#hatch)" opacity=".1"/>
+<g class="pup" data-cx="150" data-cy="238"><circle cx="150" cy="238" r="16.5" fill="url(#iris)" stroke="#5a1a05" stroke-width="2"/><g stroke="#7a2e08" stroke-width=".9" opacity=".6"><path d="M150 238 l-14 -6 M150 238 l-15 4 M150 238 l-10 12 M150 238 l8 13 M150 238 l14 4 M150 238 l12 -8 M150 238 l5 -15 M150 238 l-6 -14"/></g><ellipse cx="150" cy="238" rx="4.4" ry="13" fill="#1a0510"/><circle cx="143" cy="231" r="5.2" fill="#fff"/><circle cx="157" cy="246" r="2.6" fill="#fff" opacity=".85"/></g>
+<rect class="lid" x="116" y="210" width="68" height="56" fill="#2fc95f"/></g>
+<ellipse cx="250" cy="238" rx="31" ry="26" fill="#fffbe8" stroke="#0b3a1f" stroke-width="5"/>
+<g clip-path="url(#cR)"><path d="M220 232 q8 -4 14 14 M280 230 q-10 -2 -16 16 M224 246 q8 -2 14 6 M278 246 q-8 -2 -12 6" stroke="#e85b5b" stroke-width="1.3" fill="none" opacity=".75"/>
+<g class="pup" data-cx="250" data-cy="238"><circle cx="250" cy="238" r="16.5" fill="url(#iris)" stroke="#5a1a05" stroke-width="2"/><g stroke="#7a2e08" stroke-width=".9" opacity=".6"><path d="M250 238 l-14 -6 M250 238 l-15 4 M250 238 l-10 12 M250 238 l8 13 M250 238 l14 4 M250 238 l12 -8 M250 238 l5 -15 M250 238 l-6 -14"/></g><ellipse cx="250" cy="238" rx="4.4" ry="13" fill="#1a0510"/><circle cx="243" cy="231" r="5.2" fill="#fff"/><circle cx="257" cy="246" r="2.6" fill="#fff" opacity=".85"/></g>
+<rect class="lid" x="216" y="210" width="68" height="56" fill="#2fc95f"/></g>
+<!-- lids, lashes, bags -->
+<g fill="none" stroke="#0b3a1f" stroke-linecap="round"><path d="M118 238 Q150 202 182 238" stroke-width="5"/><path d="M218 238 Q250 202 282 238" stroke-width="5"/>
+<path d="M126 218 Q150 204 176 218" stroke-width="2" opacity=".6"/><path d="M224 218 Q250 204 274 218" stroke-width="2" opacity=".6"/>
+<path d="M122 256 Q150 270 178 256" stroke="#0f6a34" stroke-width="2.2"/><path d="M222 256 Q250 270 278 256" stroke="#0f6a34" stroke-width="2.2"/></g>
+<g class="shut" fill="none" stroke="#0b3a1f" stroke-width="4.5" stroke-linecap="round"><path d="M120 240 Q150 262 180 240"/><path d="M220 240 Q250 262 280 240"/><path d="M126 248 l-6 6 M138 256 l-3 8 M150 259 v9 M162 256 l3 8 M174 248 l6 6 M226 248 l-6 6 M238 256 l-3 8 M250 259 v9 M262 256 l3 8 M274 248 l6 6" stroke-width="2.4"/></g>
+<!-- brows -->
+<path d="M110 208 Q146 172 192 214 Q150 196 110 208Z" fill="#14582e" stroke="#0b3a1f" stroke-width="2.6" stroke-linejoin="round"/>
+<path d="M290 206 Q254 174 208 212 Q250 196 290 206Z" fill="#14582e" stroke="#0b3a1f" stroke-width="2.6" stroke-linejoin="round"/>
+<g stroke="#0b3a1f" stroke-width="1.6" stroke-linecap="round"><path d="M118 204 l-6 -6 M128 196 l-5 -8 M140 192 l-3 -9 M152 192 l-1 -9 M164 196 l2 -8 M176 202 l5 -7 M188 210 l7 -4"/><path d="M282 202 l6 -6 M272 194 l5 -8 M260 190 l3 -9 M248 190 l1 -9 M236 194 l-2 -8 M224 200 l-5 -7 M212 208 l-7 -4"/></g>
+<!-- nose -->
+<path d="M200 234 C186 256 170 282 174 298 C178 316 222 316 226 298 C230 282 214 256 200 234Z" fill="url(#skin)" stroke="#0b3a1f" stroke-width="4.4"/>
+<path d="M174 298 C178 316 222 316 226 298 C214 306 186 306 174 298Z" fill="url(#hatch)" opacity=".4"/>
+<ellipse cx="189" cy="299" rx="6.5" ry="4.6" fill="#06210f" transform="rotate(-15 189 299)"/><ellipse cx="211" cy="299" rx="6.5" ry="4.6" fill="#06210f" transform="rotate(15 211 299)"/>
+<g stroke="#0b3a1f" stroke-width="1.3" stroke-linecap="round"><path d="M186 296 l-2 -6 M190 295 l0 -6 M214 296 l2 -6 M210 295 l0 -6"/></g>
+<ellipse cx="195" cy="268" rx="6" ry="13" fill="#d6ffd8" opacity=".42" transform="rotate(12 195 268)"/>
+<path d="M186 282 q-6 4 -4 12 M214 282 q6 4 4 12" stroke="#0f6a34" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<!-- mouth -->
+<path d="M120 316 C150 370 250 370 280 316 C250 336 150 336 120 316Z" fill="url(#mouth)" stroke="#0b3a1f" stroke-width="5" stroke-linejoin="round"/>
+<path d="M140 340 C160 358 240 358 260 340 C240 346 160 346 140 340Z" fill="#12020a" opacity=".6"/>
+<g class="tongue"><path d="M164 348 C178 368 222 368 236 348 C222 341 178 341 164 348Z" fill="#ff6aa9" stroke="#8a1b56" stroke-width="2.2"/><path d="M200 346 V362" stroke="#8a1b56" stroke-width="1.8"/><g fill="#ffb3d6" opacity=".8"><circle cx="186" cy="354" r="1.3"/><circle cx="194" cy="358" r="1.3"/><circle cx="208" cy="358" r="1.3"/><circle cx="216" cy="354" r="1.3"/></g></g>
+<g fill="#fff6d8" stroke="#0b3a1f" stroke-width="2.2" stroke-linejoin="round">
+<path d="M124 320 L132 338 L142 326Z" fill="#ecdba0"/><path d="M136 326 L146 350 L158 332Z"/><path d="M160 334 L166 350 L178 336Z" fill="#e8d69c"/><path d="M182 336 l-2 8 l8 -2 l-2 -6Z" opacity=".95"/><path d="M222 336 L234 350 L240 334Z"/><path d="M244 330 L256 350 L264 326Z"/><path d="M262 322 L270 338 L278 318Z" fill="#ecdba0"/></g>
+<g stroke="#6a5a20" stroke-width="1.3" fill="none" stroke-linecap="round"><path d="M140 332 l4 10 M250 334 l-4 10 M126 324 l4 8 M268 326 l-4 8"/></g>
+<path d="M112 308 Q116 322 128 328 M288 308 Q284 322 272 328" stroke="#0b3a1f" stroke-width="3" fill="none" stroke-linecap="round"/>
+<g stroke="#0b3a1f" stroke-width="1.6" stroke-linecap="round"><path d="M188 372 l-2 6 M194 374 l0 6 M200 374 l1 7 M206 374 l1 6 M212 372 l3 5"/></g>
+
+<!-- hat: one single piece, no seams -->
+<path d="M60 190 C66 150 96 118 136 98 C186 72 232 48 280 30 C320 16 364 24 384 60 C392 76 392 92 384 100 C374 94 356 94 344 104 C326 118 316 138 322 160 C326 174 336 182 348 190 C300 172 250 164 200 164 C140 164 96 174 60 190Z" fill="url(#hat)" stroke="#1d0a45" stroke-width="5" stroke-linejoin="round"/>
+<g clip-path="url(#hatClip)">
+<path d="M200 164 C250 160 290 150 322 138 C330 120 340 108 350 102 L392 100 L392 190 L348 190 C300 172 250 164 200 164Z" fill="#14043a" opacity=".4"/>
+<path d="M70 182 C78 148 104 122 140 104 C190 80 236 58 284 40 C236 66 190 92 150 116 C114 138 92 158 84 186Z" fill="#d9bcff" opacity=".4"/>
+<path d="M300 34 C334 22 366 30 380 56 C362 40 332 36 304 44Z" fill="#fff" opacity=".25"/>
+<path d="M50 160 Q200 120 360 168 L360 204 Q200 150 50 204Z" fill="#e8a820"/>
+<path d="M50 160 Q200 120 360 168 L360 174 Q200 128 50 168Z" fill="#fff0a8" opacity=".6"/>
+<path d="M50 190 Q200 138 360 190 L360 204 Q200 150 50 204Z" fill="#8a5a08" opacity=".5"/>
+<g stroke="#12042f" stroke-width="2" fill="none" opacity=".5" stroke-linecap="round"><path d="M110 150 q20 -10 44 -6"/><path d="M172 112 q16 14 6 30"/><path d="M244 84 q12 16 2 34"/><path d="M290 62 q10 14 2 28"/><path d="M130 130 C160 118 190 120 214 110"/></g>
+<g transform="rotate(-24 196 108)"><rect x="174" y="90" width="44" height="34" rx="5" fill="#ff7bd5"/><path d="M178 96 h36 M178 118 h36" stroke="#ffd6f0" stroke-width="1.8" stroke-dasharray="3 3"/><path d="M190 100 l12 12 M202 100 l-12 12" stroke="#fff" stroke-width="2" opacity=".6"/></g>
+<path d="M258 66 l4 10 l10 1 l-8 7 l3 10 l-9 -6 l-9 6 l3 -10 l-8 -7 l10 -1Z" fill="#ffe28a"/>
+<g fill="#c9a8ff" opacity=".7"><circle cx="150" cy="134" r="2"/><circle cx="118" cy="150" r="1.6"/><circle cx="226" cy="132" r="1.8"/><circle cx="296" cy="96" r="1.6"/><circle cx="90" cy="170" r="1.6"/><circle cx="320" cy="60" r="1.8"/></g>
+</g>
+<rect x="186" y="140" width="30" height="24" rx="4" fill="none" stroke="#5a3a00" stroke-width="4"/><rect x="192" y="146" width="18" height="12" rx="2" fill="#ffe28a"/>
+<path d="M60 190 C96 174 140 164 200 164 C250 164 300 172 348 190" stroke="#1d0a45" stroke-width="5" fill="none" stroke-linecap="round"/>
+<g transform="translate(1,24)"><circle cx="381" cy="82" r="11" fill="#ffb629" stroke="#5a3a00" stroke-width="3" class="gem"/><path d="M377 78 q4 -4 8 0" stroke="#fff" stroke-width="2" fill="none"/>
+<path d="M381 93 q-3 12 -6 18 M383 93 q2 12 6 18 M385 92 q8 10 10 16" stroke="#ffb629" stroke-width="3" fill="none" stroke-linecap="round"/>
+</g>
+<!-- stray wisps -->
+<g stroke="#0b3a1f" stroke-width="2.4" fill="none" stroke-linecap="round"><path d="M96 188 q-8 10 -4 24"/><path d="M88 192 q-10 6 -8 18"/><path d="M304 190 q8 10 4 22"/></g>
+</g>
+</svg></div>
+<div class="bubble" id="bubble" role="status" aria-live="polite"></div>
+</div>
+</div>
+
+<section id="gobi"><div class="wrap">
+<h2>Gobi</h2>
+<p data-i="gp" style="color:var(--mute);max-width:60ch;margin:0">Goblin Studio's mascot. He has a warty nose, pointy ears and a grin that never quits. His eyes follow your cursor, and he loves a staring contest.</p>
+<div class="facts">
+<div class="fact" data-i="k1"><b>Height</b>About three mushrooms tall</div>
+<div class="fact" data-i="k2"><b>Hat</b>Purple and patched, with a golden bell on the tip</div>
+<div class="fact" data-i="k3"><b>Necklace</b>A blue gem he found in a cave</div>
+<div class="fact" data-i="k4"><b>Favorite things</b>Neon lights and squeaky doors</div>
+</div>
+</div></section>
+
+<section id="diary"><div class="wrap">
+<h2 data-i="dh">Gobi's Cave Diary</h2>
+<p data-i="di" style="color:var(--mute);margin:0">Some parts are classified. Hover over or tap the black bars to peek.</p>
+<div class="diary">
+<div class="entry" data-i="e1"><b>Day 12</b>Found a shiny rock. Showed it to a bat. The bat was not impressed. <span class="redact" tabindex="0">I showed it to the bat three more times.</span></div>
+<div class="entry" data-i="e2"><b>Day 31</b>Tried to learn magic today. <span class="redact" tabindex="0">I set my hat on fire a little.</span> It's fine. The hat is mostly fireproof now.</div>
+<div class="entry" data-i="e3"><b>Day 47</b>I'm working on something big. A secret so secret that <span class="redact" tabindex="0">even I forgot what it was.</span> More soon.</div>
+</div>
+</div></section>
+
+<section id="bulten"><div class="wrap"><div class="box">
+<h2 data-i="nh">Stay in the loop</h2>
+<p data-i="np" style="color:var(--mute);margin:8px 0 0">Be the first to know when something new drops.</p>
+<form id="f"><input type="email" placeholder="your email address" aria-label="Email address" required><button class="btn" type="submit" data-i="nj">Join</button></form>
+<div id="msg" role="status"></div>
+</div></div></section>
+</main>
+
+<footer><div class="wrap">© 2026 Goblin Studio · goblinstudio.com</div></footer>
+<script>
+document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();document.getElementById('msg').textContent=T('ok');this.reset();});
+(function(){var svg=document.querySelector('#gobiArt svg'),pups=svg.querySelectorAll('.pup'),cfg=[],tx=0,ty=0,pend=false,R;
+function meas(){R=svg.getBoundingClientRect();cfg=[].map.call(pups,function(p){return{p:p,x:+p.dataset.cx,y:+p.dataset.cy}})}
+meas();addEventListener('resize',meas);addEventListener('scroll',meas,{passive:true});
+function upd(){pend=false;var sx=R.width/400,sy=R.height/450;cfg.forEach(function(c){var dx=tx-(R.left+c.x*sx),dy=ty-(R.top+c.y*sy),d=Math.hypot(dx,dy)||1,m=Math.min(9,d/20);c.p.setAttribute('transform','translate('+(dx/d*m).toFixed(1)+' '+(dy/d*m).toFixed(1)+')')})}
+function go(x,y){tx=x;ty=y;if(!pend){pend=true;requestAnimationFrame(upd)}}
+addEventListener('pointermove',function(e){go(e.clientX,e.clientY)},{passive:true});
+addEventListener('touchmove',function(e){var t=e.touches[0];if(t)go(t.clientX,t.clientY)},{passive:true});
+})();
+</script>
+<script>
+(function(){var svg=document.querySelector('#gobiArt svg'),inp=document.querySelector('#f input');
+if(!inp)return;
+inp.addEventListener('focus',function(){svg.classList.add('closed')});
+inp.addEventListener('input',function(){svg.classList.add('closed')});
+inp.addEventListener('blur',function(){svg.classList.remove('closed')});
+document.getElementById('f').addEventListener('submit',function(){svg.classList.remove('closed')});
+})();
+</script>
+<script>
+(function(){
+var d=document,cur='en',nodes=[].slice.call(d.querySelectorAll('[data-i]')),EN={},inp=d.querySelector('#f input');
+nodes.forEach(function(n){EN[n.dataset.i]=n.innerHTML});
+EN.pe=inp.placeholder;EN.lon='Lights: on';EN.loff='Lights: off';EN.ok="You're in! We'll let you know.";EN.sh="Nice hat. Very me.";EN.sl0="Who turned off the lights? Oh. It was you.";EN.sl1="Back to neon. Ahh, my eyes.";EN.sp="PARTY TIME! Hats on, everyone!";
+EN.j=["Why did the goblin cross the road? To get to the other cave.","I tried to write a neon joke, but it wasn't very bright.","I'm reading a book about caves. It's pretty deep.","I used to hate stalactites. Then they grew on me.","Why don't goblins whisper secrets in caves? Echoes.","My gem necklace is a rock-solid accessory.","Mushrooms are great at parties. They always have room to grow.","Don't trust stairs. They're always up to something.","Pointy ears are great for hearing. And a little for poking.","I'd tell you a joke about my hat, but it goes over your head."];
+EN.q=["Signs point to mushrooms.","Ask again after snack.","Definitely. Probably. Maybe.","My ears say yes.","The cave says no.","Outlook: shiny.","Don't count on it. Count gems instead.","Yes, but wear a hat."];
+EN.o=["Hey! Watch the nose!","Ow, that's my wart!","Boop received.","Tickles!","Do that again and I'll tell the cave."];
+var L={
+tr:{nd:"Günlük",nn:"Bülten",ns:"Haberdar ol",hp:"Yeni oyunlar yolda. Şimdilik stüdyonun sahibiyle tanış: Gobi.",hc:"Yeni oyunlardan haberdar ol",ha:"Gobi'ye sor",hh:"Gobi'ye dokun. Ona bir soru sor. Işıkları kapat. Ya da klavyende \"gobi\" yaz.",gp:"Goblin Studio'nun maskotu. Siğilli bir burnu, sivri kulakları ve hiç bitmeyen bir sırıtışı var. Gözleri imlecini takip eder ve bakışma yarışmasına bayılır.",k1:"Boyu|Yaklaşık üç mantar boyunda",k2:"Şapkası|Mor ve yamalı, ucunda altın bir çan var",k3:"Kolyesi|Bir mağarada bulduğu mavi bir taş",k4:"Sevdikleri|Neon ışıklar ve gıcırdayan kapılar",dh:"Gobi'nin Mağara Günlüğü",di:"Bazı bölümler gizli. Göz atmak için siyah çubukların üstüne gel ya da dokun.",e1:"12. Gün|Parlak bir taş buldum. Bir yarasaya gösterdim. Yarasa pek etkilenmedi. [[Yarasaya üç kez daha gösterdim.]]",e2:"31. Gün|Bugün büyü yapmayı denedim. [[Şapkamı biraz yaktım.]] Sorun yok. Şapka artık neredeyse yanmaz.",e3:"47. Gün|Büyük bir şey üzerinde çalışıyorum. Öyle gizli ki [[ben bile ne olduğunu unuttum.]] Yakında daha fazlası.",nh:"Haberdar ol",np:"Yeni bir şey çıktığında ilk sen öğren.",pe:"e-posta adresin",nj:"Katıl",lg:"Dil",lon:"Işıklar: açık",loff:"Işıklar: kapalı",ok:"Katıldın! Sana haber vereceğiz.",sh:"Güzel şapka. Tam benlik.",sl0:"Işıkları kim kapattı? Ha. Sensin.",sl1:"Yine neon. Ahh, gözlerim.",sp:"PARTİ ZAMANI! Şapkalar yukarı, herkes!",j:["Goblin yolun karşısına neden geçmiş? Öbür mağaraya gitmek için.","Mağaralar hakkında bir kitap okuyorum. Epey derin.","Eskiden sarkıtlardan nefret ederdim. Sonra üstüme yapıştılar.","Taşlı kolyem sağlam bir aksesuar."],q:["İşaretler mantar diyor.","Atıştırmalıktan sonra tekrar sor.","Kesinlikle. Muhtemelen. Belki.","Kulaklarım evet diyor."],o:["Hey! Burnuma dikkat!","Ay, o benim siğilim!","Dürtme alındı."]},
+de:{nd:"Tagebuch",nn:"Newsletter",ns:"Auf dem Laufenden bleiben",hp:"Neue Spiele sind unterwegs. Lerne bis dahin den Besitzer des Studios kennen: Gobi.",hc:"Über neue Spiele informiert werden",ha:"Frag Gobi",hh:"Stups Gobi an. Stell ihm eine Frage. Mach das Licht aus. Oder tippe \"gobi\" auf deiner Tastatur.",gp:"Das Maskottchen von Goblin Studio. Er hat eine warzige Nase, spitze Ohren und ein Grinsen, das nie verschwindet. Seine Augen folgen deinem Cursor und er liebt Anstarr-Duelle.",k1:"Größe|Etwa drei Pilze hoch",k2:"Hut|Lila und geflickt, mit einer goldenen Glocke an der Spitze",k3:"Halskette|Ein blauer Edelstein aus einer Höhle",k4:"Lieblingsdinge|Neonlicht und quietschende Türen",dh:"Gobis Höhlentagebuch",di:"Manche Stellen sind geheim. Fahre über die schwarzen Balken oder tippe darauf, um zu spähen.",e1:"Tag 12|Einen glänzenden Stein gefunden. Einer Fledermaus gezeigt. Die Fledermaus war nicht beeindruckt. [[Ich habe ihn ihr noch dreimal gezeigt.]]",e2:"Tag 31|Heute Magie probiert. [[Ich habe meinen Hut ein bisschen angezündet.]] Alles gut. Der Hut ist jetzt fast feuerfest.",e3:"Tag 47|Ich arbeite an etwas Großem. So geheim, dass [[ich selbst vergessen habe, was es ist.]] Bald mehr.",nh:"Auf dem Laufenden bleiben",np:"Erfahre als Erster, wenn etwas Neues erscheint.",pe:"deine E-Mail-Adresse",nj:"Anmelden",lg:"Sprache",lon:"Licht: an",loff:"Licht: aus",ok:"Du bist dabei! Wir melden uns.",sh:"Schöner Hut. Ganz mein Stil.",sl0:"Wer hat das Licht ausgemacht? Ach. Du.",sl1:"Zurück zum Neon. Ahh, meine Augen.",sp:"PARTYZEIT! Hüte auf, alle zusammen!",j:["Warum hat der Goblin die Straße überquert? Um zur anderen Höhle zu kommen.","Ich lese ein Buch über Höhlen. Es ist ziemlich tiefgründig.","Früher hasste ich Stalaktiten. Dann sind sie mir ans Herz gewachsen.","Meine Edelstein-Kette ist ein felsenfestes Accessoire."],q:["Die Zeichen stehen auf Pilze.","Frag nach dem Snack nochmal.","Auf jeden Fall. Wahrscheinlich. Vielleicht.","Meine Ohren sagen ja."],o:["Hey! Pass auf die Nase auf!","Aua, das ist meine Warze!","Stups erhalten."]},
+ru:{nd:"Дневник",nn:"Рассылка",ns:"Следи за новостями",hp:"Новые игры уже на подходе. А пока познакомься с хозяином студии: Гоби.",hc:"Узнать о новых играх",ha:"Спроси Гоби",hh:"Потыкай Гоби. Задай ему вопрос. Выключи свет. Или набери «gobi» на клавиатуре.",gp:"Талисман Goblin Studio. У него бородавчатый нос, острые уши и улыбка, которая никогда не гаснет. Его глаза следят за курсором, а в гляделки он играет с удовольствием.",k1:"Рост|Примерно три гриба",k2:"Шляпа|Фиолетовая, в заплатках, с золотым колокольчиком на кончике",k3:"Ожерелье|Синий камень, найденный в пещере",k4:"Любимое|Неоновые огни и скрипучие двери",dh:"Пещерный дневник Гоби",di:"Часть записей засекречена. Наведи курсор или коснись чёрных полос, чтобы заглянуть.",e1:"День 12|Нашёл блестящий камень. Показал летучей мыши. Мышь не впечатлилась. [[Я показал ей ещё три раза.]]",e2:"День 31|Сегодня пробовал колдовать. [[Немного поджёг шляпу.]] Ничего страшного. Теперь шляпа почти огнеупорная.",e3:"День 47|Работаю над кое-чем большим. Это такой секрет, что [[даже я забыл, что это.]] Скоро расскажу.",nh:"Следи за новостями",np:"Узнавай первым, когда выйдет что-то новое.",pe:"твой адрес почты",nj:"Подписаться",lg:"Язык",lon:"Свет: вкл.",loff:"Свет: выкл.",ok:"Готово! Мы сообщим тебе.",sh:"Классная шляпа. Очень в моём стиле.",sl0:"Кто выключил свет? А. Это ты.",sl1:"Снова неон. Ааа, мои глаза.",sp:"ВРЕМЯ ВЕЧЕРИНКИ! Шляпы на головы!",j:["Почему гоблин перешёл дорогу? Чтобы попасть в другую пещеру.","Читаю книгу о пещерах. Очень глубокая.","Раньше я ненавидел сталактиты. Потом они на мне повисли.","Моё ожерелье с камнем — несокрушимый аксессуар."],q:["Знаки указывают на грибы.","Спроси снова после перекуса.","Определённо. Наверное. Может быть.","Мои уши говорят да."],o:["Эй! Осторожнее с носом!","Ай, это моя бородавка!","Тычок принят."]},
+es:{nd:"Diario",nn:"Boletín",ns:"Mantente al día",hp:"Vienen nuevos juegos. Mientras tanto, conoce al dueño del estudio: Gobi.",hc:"Avísame de los nuevos juegos",ha:"Pregúntale a Gobi",hh:"Pica a Gobi. Hazle una pregunta. Apaga las luces. O escribe \"gobi\" con tu teclado.",gp:"La mascota de Goblin Studio. Tiene una nariz llena de verrugas, orejas puntiagudas y una sonrisa que nunca se acaba. Sus ojos siguen tu cursor y le encantan los concursos de miradas.",k1:"Altura|Unos tres hongos de alto",k2:"Sombrero|Morado y remendado, con una campana dorada en la punta",k3:"Collar|Una gema azul que encontró en una cueva",k4:"Cosas favoritas|Luces de neón y puertas que chirrían",dh:"El diario de cueva de Gobi",di:"Algunas partes son secretas. Pasa el cursor o toca las barras negras para echar un vistazo.",e1:"Día 12|Encontré una roca brillante. Se la enseñé a un murciélago. Al murciélago no le impresionó. [[Se la enseñé tres veces más.]]",e2:"Día 31|Hoy intenté aprender magia. [[Quemé un poquito mi sombrero.]] No pasa nada. Ahora el sombrero es casi ignífugo.",e3:"Día 47|Trabajo en algo grande. Un secreto tan secreto que [[hasta yo olvidé qué era.]] Pronto habrá más.",nh:"Mantente al día",np:"Sé el primero en enterarte cuando salga algo nuevo.",pe:"tu correo electrónico",nj:"Unirme",lg:"Idioma",lon:"Luces: encendidas",loff:"Luces: apagadas",ok:"¡Listo! Te avisaremos.",sh:"Qué buen sombrero. Muy yo.",sl0:"¿Quién apagó las luces? Ah. Fuiste tú.",sl1:"De vuelta al neón. Ahh, mis ojos.",sp:"¡HORA DE FIESTA! ¡Sombreros arriba, todos!",j:["¿Por qué cruzó el goblin la calle? Para llegar a la otra cueva.","Estoy leyendo un libro sobre cuevas. Es bastante profundo.","Antes odiaba las estalactitas. Luego me fueron cayendo bien.","Mi collar de gemas es un accesorio a toda roca."],q:["Las señales apuntan a hongos.","Vuelve a preguntar después de comer algo.","Seguro. Probablemente. Quizás.","Mis orejas dicen que sí."],o:["¡Eh! ¡Cuidado con la nariz!","¡Ay, esa es mi verruga!","Toque recibido."]},
+fr:{nd:"Journal",nn:"Newsletter",ns:"Restez informé",hp:"De nouveaux jeux arrivent. En attendant, découvrez le propriétaire du studio : Gobi.",hc:"Être prévenu des nouveaux jeux",ha:"Demande à Gobi",hh:"Pique Gobi. Pose-lui une question. Éteins la lumière. Ou tape « gobi » sur ton clavier.",gp:"La mascotte de Goblin Studio. Il a un nez couvert de verrues, des oreilles pointues et un sourire qui ne le quitte jamais. Ses yeux suivent ton curseur et il adore les concours de regard.",k1:"Taille|Environ trois champignons de haut",k2:"Chapeau|Violet et rapiécé, avec une cloche dorée au bout",k3:"Collier|Une gemme bleue trouvée dans une grotte",k4:"Ses passions|Les néons et les portes qui grincent",dh:"Le journal de grotte de Gobi",di:"Certains passages sont confidentiels. Survole ou touche les barres noires pour jeter un œil.",e1:"Jour 12|J'ai trouvé un caillou brillant. Je l'ai montré à une chauve-souris. Elle n'était pas impressionnée. [[Je le lui ai encore montré trois fois.]]",e2:"Jour 31|J'ai essayé d'apprendre la magie. [[J'ai un peu mis le feu à mon chapeau.]] Ce n'est pas grave. Il est presque ignifugé maintenant.",e3:"Jour 47|Je travaille sur quelque chose de grand. Un secret si secret que [[même moi, j'ai oublié ce que c'était.]] Bientôt plus d'infos.",nh:"Restez informé",np:"Soyez le premier à savoir quand quelque chose de nouveau sort.",pe:"votre adresse e-mail",nj:"S'inscrire",lg:"Langue",lon:"Lumières : allumées",loff:"Lumières : éteintes",ok:"C'est fait ! On vous tiendra au courant.",sh:"Beau chapeau. Très moi.",sl0:"Qui a éteint la lumière ? Ah. C'est toi.",sl1:"Retour au néon. Ahh, mes yeux.",sp:"C'EST LA FÊTE ! Chapeaux en l'air, tout le monde !",j:["Pourquoi le gobelin a-t-il traversé la route ? Pour aller dans l'autre grotte.","Je lis un livre sur les grottes. Il est plutôt profond.","Je détestais les stalactites. Puis elles m'ont pris par surprise.","Mon collier de gemmes est un accessoire solide comme le roc."],q:["Les signes indiquent des champignons.","Redemande après une collation.","Absolument. Probablement. Peut-être.","Mes oreilles disent oui."],o:["Hé ! Attention au nez !","Aïe, c'est ma verrue !","Pique reçue."]},
+it:{nd:"Diario",nn:"Newsletter",ns:"Resta aggiornato",hp:"Nuovi giochi in arrivo. Intanto, conosci il proprietario dello studio: Gobi.",hc:"Avvisami sui nuovi giochi",ha:"Chiedi a Gobi",hh:"Punzecchia Gobi. Fagli una domanda. Spegni le luci. Oppure scrivi \"gobi\" sulla tastiera.",gp:"La mascotte di Goblin Studio. Ha un naso pieno di verruche, orecchie a punta e un sorriso che non finisce mai. I suoi occhi seguono il cursore e adora le gare di sguardi.",k1:"Altezza|Circa tre funghi",k2:"Cappello|Viola e rattoppato, con una campanella d'oro in punta",k3:"Collana|Una gemma blu trovata in una grotta",k4:"Cose preferite|Luci al neon e porte che cigolano",dh:"Il diario di grotta di Gobi",di:"Alcune parti sono segrete. Passa il mouse o tocca le barre nere per sbirciare.",e1:"Giorno 12|Ho trovato un sasso luccicante. L'ho mostrato a un pipistrello. Il pipistrello non era colpito. [[Gliel'ho mostrato altre tre volte.]]",e2:"Giorno 31|Oggi ho provato a imparare la magia. [[Ho dato un po' fuoco al cappello.]] Tutto ok. Ora il cappello è quasi ignifugo.",e3:"Giorno 47|Sto lavorando a qualcosa di grosso. Un segreto così segreto che [[perfino io ho dimenticato cos'era.]] Presto altre novità.",nh:"Resta aggiornato",np:"Sii il primo a sapere quando esce qualcosa di nuovo.",pe:"il tuo indirizzo e-mail",nj:"Iscriviti",lg:"Lingua",lon:"Luci: accese",loff:"Luci: spente",ok:"Ci sei! Ti faremo sapere.",sh:"Bel cappello. Molto da me.",sl0:"Chi ha spento le luci? Ah. Sei stato tu.",sl1:"Di nuovo neon. Ahh, i miei occhi.",sp:"È ORA DI FESTA! Cappelli in alto, tutti!",j:["Perché il goblin ha attraversato la strada? Per arrivare all'altra grotta.","Sto leggendo un libro sulle grotte. È piuttosto profondo.","Odiavo le stalattiti. Poi mi sono rimaste appese.","La mia collana di gemme è un accessorio solido come la roccia."],q:["I segni indicano funghi.","Richiedi dopo uno spuntino.","Sicuro. Probabilmente. Forse.","Le mie orecchie dicono sì."],o:["Ehi! Attento al naso!","Ahi, quella è la mia verruca!","Pizzicotto ricevuto."]},
+pt:{nd:"Diário",nn:"Newsletter",ns:"Fique por dentro",hp:"Novos jogos estão a caminho. Por enquanto, conheça o dono do estúdio: Gobi.",hc:"Receber aviso de novos jogos",ha:"Pergunte ao Gobi",hh:"Cutuque o Gobi. Faça uma pergunta a ele. Apague as luzes. Ou digite \"gobi\" no teclado.",gp:"O mascote da Goblin Studio. Ele tem um nariz cheio de verrugas, orelhas pontudas e um sorriso que não acaba nunca. Os olhos dele seguem o seu cursor e ele adora um concurso de encarada.",k1:"Altura|Cerca de três cogumelos",k2:"Chapéu|Roxo e remendado, com um sino dourado na ponta",k3:"Colar|Uma gema azul que ele achou numa caverna",k4:"Coisas favoritas|Luzes de neon e portas rangentes",dh:"O diário de caverna do Gobi",di:"Algumas partes são secretas. Passe o mouse ou toque nas barras pretas para espiar.",e1:"Dia 12|Achei uma pedra brilhante. Mostrei para um morcego. O morcego não ficou impressionado. [[Mostrei mais três vezes.]]",e2:"Dia 31|Hoje tentei aprender magia. [[Queimei um pouquinho o meu chapéu.]] Tudo bem. Agora o chapéu é quase à prova de fogo.",e3:"Dia 47|Estou trabalhando em algo grande. Um segredo tão secreto que [[até eu esqueci o que era.]] Em breve, mais novidades.",nh:"Fique por dentro",np:"Seja o primeiro a saber quando algo novo chegar.",pe:"seu endereço de e-mail",nj:"Participar",lg:"Idioma",lon:"Luzes: ligadas",loff:"Luzes: apagadas",ok:"Você entrou! Avisaremos você.",sh:"Belo chapéu. Muito eu.",sl0:"Quem apagou as luzes? Ah. Foi você.",sl1:"De volta ao neon. Ahh, meus olhos.",sp:"HORA DA FESTA! Chapéus para o alto, pessoal!",j:["Por que o goblin atravessou a rua? Para chegar à outra caverna.","Estou lendo um livro sobre cavernas. É bem profundo.","Eu odiava estalactites. Depois elas cresceram em mim.","Meu colar de gemas é um acessório firme como rocha."],q:["Os sinais apontam para cogumelos.","Pergunte de novo depois do lanche.","Com certeza. Provavelmente. Talvez.","Minhas orelhas dizem que sim."],o:["Ei! Cuidado com o nariz!","Ai, essa é a minha verruga!","Cutucada recebida."]},
+ja:{nd:"日記",nn:"ニュースレター",ns:"最新情報を受け取る",hp:"新しいゲームを準備中です。それまでは、スタジオのオーナー、ゴビに会いましょう。",hc:"新作ゲームの通知を受け取る",ha:"ゴビに聞く",hh:"ゴビをつついてみよう。質問してみよう。電気を消してみよう。キーボードで「gobi」と入力するのも試してね。",gp:"Goblin Studioのマスコット。イボだらけの鼻、とがった耳、消えないニヤリ顔が特徴です。目はカーソルを追いかけ、にらめっこが大好き。",k1:"身長|キノコ約3つ分",k2:"帽子|紫色でつぎはぎ、先に金の鈴付き",k3:"ネックレス|洞窟で見つけた青い宝石",k4:"好きなもの|ネオンの光ときしむドア",dh:"ゴビの洞窟日記",di:"一部は極秘です。黒いバーにカーソルを合わせるかタップするとのぞけます。",e1:"12日目|ピカピカの石を見つけた。コウモリに見せたけど、感心してくれなかった。[[あと3回見せた。]]",e2:"31日目|今日は魔法を習ってみた。[[帽子を少し燃やしちゃった。]]大丈夫。帽子はもうほぼ燃えない。",e3:"47日目|大きなことに取り組み中。あまりに極秘すぎて[[自分でも何だったか忘れた。]]続報を待ってね。",nh:"最新情報を受け取る",np:"新しいお知らせをいち早くお届けします。",pe:"メールアドレス",nj:"登録する",lg:"言語",lon:"ライト：オン",loff:"ライト：オフ",ok:"登録完了！お知らせします。",sh:"いい帽子だね。僕にぴったり。",sl0:"誰が電気を消したの？ あ、君か。",sl1:"ネオンが戻った。うう、まぶしい。",sp:"パーティータイム！みんな帽子をかぶって！",j:["ゴブリンはなぜ道を渡った？ 隣の洞窟に行くため。","洞窟の本を読んでるんだ。かなり深い内容だよ。","昔は鍾乳石が嫌いだった。でもだんだん好きになってきた。","宝石のネックレスは岩のように堅実なアクセサリーだ。"],q:["サインはキノコを指している。","おやつのあとでもう一度聞いて。","もちろん。たぶん。かもね。","僕の耳は「はい」と言ってる。"],o:["おい！鼻に気をつけて！","いたっ、そこは僕のイボ！","ツンツン、受け取った。"]},
+ar:{nd:"اليوميات",nn:"النشرة",ns:"ابقَ على اطلاع",hp:"ألعاب جديدة في الطريق. في الوقت الحالي، تعرّف على صاحب الاستوديو: غوبي.",hc:"أعلمني بالألعاب الجديدة",ha:"اسأل غوبي",hh:"انقر على غوبي. اسأله سؤالاً. أطفئ الأضواء. أو اكتب «gobi» على لوحة المفاتيح.",gp:"تميمة Goblin Studio. لديه أنف مليء بالثآليل وأذنان مدببتان وابتسامة لا تفارقه. عيناه تتبعان المؤشر وهو يحب مسابقات التحديق.",k1:"الطول|حوالي ثلاث فطريات",k2:"القبعة|بنفسجية ومرقّعة، وفي طرفها جرس ذهبي",k3:"القلادة|جوهرة زرقاء وجدها في كهف",k4:"المفضّلات|أضواء النيون والأبواب الصارّة",dh:"يوميات غوبي في الكهف",di:"بعض الأجزاء سرّية. مرّر المؤشر أو المس الأشرطة السوداء لتلقي نظرة.",e1:"اليوم 12|وجدت صخرة لامعة. أريتها لخفّاش. لم يتأثر الخفّاش. [[أريتها له ثلاث مرات أخرى.]]",e2:"اليوم 31|حاولت اليوم تعلّم السحر. [[أحرقت قبعتي قليلاً.]] لا بأس. القبعة الآن شبه مقاومة للنار.",e3:"اليوم 47|أعمل على شيء كبير. سرّ سرّي جداً لدرجة أنني [[نسيت حتى ما هو.]] المزيد قريباً.",nh:"ابقَ على اطلاع",np:"كن أول من يعرف عند صدور شيء جديد.",pe:"بريدك الإلكتروني",nj:"انضم",lg:"اللغة",lon:"الأضواء: مضاءة",loff:"الأضواء: مطفأة",ok:"تم! سنخبرك.",sh:"قبعة جميلة. تشبهني تماماً.",sl0:"من أطفأ الأضواء؟ آه. إنه أنت.",sl1:"عدنا إلى النيون. آه، عيناي.",sp:"وقت الحفلة! القبعات إلى الأعلى يا جماعة!",j:["لماذا عبر الغوبلن الطريق؟ ليصل إلى الكهف الآخر.","أقرأ كتاباً عن الكهوف. إنه عميق جداً.","كنت أكره الصواعد والهوابط. ثم تعلّقت بها.","قلادة الجواهر لديّ إكسسوار صلب كالصخر."],q:["العلامات تشير إلى الفطر.","اسأل مرة أخرى بعد وجبة خفيفة.","بالتأكيد. غالباً. ربما.","أذناي تقولان نعم."],o:["مهلاً! انتبه لأنفي!","آه، هذه ثؤلولتي!","تم استلام النقرة."]}
+};
+var names=[['en','English'],['tr','Türkçe'],['de','Deutsch'],['ru','Русский'],['es','Español'],['fr','Français'],['it','Italiano'],['pt','Português'],['ja','日本語'],['ar','العربية']];
+window.T=function(k){var v=L[cur]&&L[cur][k];return v==null?EN[k]:v};
+function html(k){if(cur==='en'||!L[cur]||L[cur][k]==null)return EN[k];var v=L[cur][k].replace(/\[\[/g,'<span class="redact" tabindex="0">').replace(/\]\]/g,'</span>');if(/^[ke]\d$/.test(k))v='<b>'+v.replace('|','</b>');return v}
+var menu=d.getElementById('langMenu'),btn=d.getElementById('langBtn'),lb=d.getElementById('lights');
+names.forEach(function(n){var li=d.createElement('li'),b=d.createElement('button');b.type='button';b.setAttribute('role','menuitem');b.lang=n[0];b.dataset.l=n[0];b.textContent=n[1];li.appendChild(b);menu.appendChild(li)});
+function apply(c){cur=c;var h=d.documentElement;h.lang=c;h.dir=c==='ar'?'rtl':'ltr';
+nodes.forEach(function(n){n.innerHTML=html(n.dataset.i)});inp.placeholder=T('pe');lb.textContent=T(d.body.classList.contains('off')?'loff':'lon');
+[].forEach.call(menu.querySelectorAll('button'),function(b){b.setAttribute('aria-current',b.dataset.l===c)});
+try{localStorage.setItem('gs-lang',c)}catch(e){}}
+function close(){menu.hidden=true;btn.setAttribute('aria-expanded','false')}
+btn.addEventListener('click',function(e){e.stopPropagation();var o=menu.hidden;menu.hidden=!o;btn.setAttribute('aria-expanded',o)});
+menu.addEventListener('click',function(e){var b=e.target.closest('button');if(b){apply(b.dataset.l);close();btn.focus()}});
+d.addEventListener('click',close);d.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+var s;try{s=localStorage.getItem('gs-lang')}catch(e){}
+apply(s&&L[s]?s:'en');
+})();
+</script>
+<script>
+(function(){
+var d=document,svg=d.querySelector('#gobiArt svg'),b=d.getElementById('bubble'),hideT,nextT,last=-1;
+function rnd(a){return a[Math.floor(Math.random()*a.length)]}
+function speak(t,ms){clearTimeout(hideT);clearTimeout(nextT);b.textContent=t;b.classList.add('on');
+hideT=setTimeout(function(){b.classList.remove('on');nextT=setTimeout(auto,3000+Math.random()*2500)},ms||5200)}
+function auto(){if(svg.classList.contains('closed')){nextT=setTimeout(auto,2000);return}
+var J=T("j"),i;do{i=Math.floor(Math.random()*J.length)}while(i===last&&J.length>1);last=i;speak(J[i])}
+nextT=setTimeout(auto,2500);
+
+var ac;function squeak(){try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime;o.type='triangle';o.frequency.setValueAtTime(420,t);o.frequency.exponentialRampToValueAtTime(980,t+.12);g.gain.setValueAtTime(.12,t);g.gain.exponentialRampToValueAtTime(.001,t+.18);o.connect(g);g.connect(ac.destination);o.start();o.stop(t+.2)}catch(e){}}
+
+svg.addEventListener('click',function(e){svg.classList.remove('poke');void svg.getBoundingClientRect();svg.classList.add('poke');squeak();spark(e.clientX,e.clientY,14);speak(rnd(T('o')),3200)});
+d.getElementById('ask').addEventListener('click',function(){speak(rnd(T('q')),4200)});
+d.querySelectorAll('.sw button').forEach(function(btn){btn.addEventListener('click',function(){
+var c=btn.dataset.s.split(',');d.querySelectorAll('#hat stop').forEach(function(st,i){st.setAttribute('stop-color',c[i])});
+d.querySelectorAll('.sw button').forEach(function(o){o.setAttribute('aria-pressed',o===btn)});speak(T('sh'),3000)})});
+var lb=d.getElementById('lights');lb.addEventListener('click',function(){var off=d.body.classList.toggle('off');lb.textContent=T(off?'loff':'lon');lb.setAttribute('aria-pressed',off);
+speak(T(off?'sl0':'sl1'),3600)});
+
+var keys='';addEventListener('keydown',function(e){var t=e.target.tagName;if(t==='INPUT'||t==='TEXTAREA')return;keys=(keys+e.key.toLowerCase()).slice(-4);
+if(keys==='gobi'){svg.classList.add('party');speak(T('sp'),5000);for(var i=0;i<4;i++)setTimeout(function(){spark(innerWidth*Math.random(),innerHeight*.4,30)},i*400);setTimeout(function(){svg.classList.remove('party')},6000)}});
+
+var cv=d.getElementById('fx'),cx=cv.getContext('2d'),W,H,ff=[],sp=[],spr=[],slow=0,lt=0,cols=[[57,255,122],[34,228,255],[255,43,214]];
+cols.forEach(function(c){var o=d.createElement('canvas');o.width=o.height=32;var g=o.getContext('2d'),gr=g.createRadialGradient(16,16,0,16,16,16);gr.addColorStop(0,'rgba('+c+',1)');gr.addColorStop(.25,'rgba('+c+',.55)');gr.addColorStop(1,'rgba('+c+',0)');g.fillStyle=gr;g.fillRect(0,0,32,32);spr.push(o)});
+function size(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+size();addEventListener('resize',size);
+for(var i=0;i<26;i++)ff.push({x:Math.random()*W,y:Math.random()*H,r:1+Math.random()*2,a:Math.random()*6.28,s:.15+Math.random()*.35,p:Math.random()*6.28,c:i%3});
+function spark(x,y,n){for(var i=0;i<n&&sp.length<160;i++)sp.push({x:x,y:y,vx:(Math.random()-.5)*2.6,vy:(Math.random()-.5)*2.6-.6,l:1,r:2.4,c:(Math.random()*3)|0})}
+function dot(x,y,r,ci,a){cx.globalAlpha=a;var z=r*7;cx.drawImage(spr[ci],x-z/2,y-z/2,z,z)}
+function frame(t){var dt=t-lt;lt=t;if(dt>34){slow++}else if(slow>0){slow--}if(slow>40&&ff.length>8){ff.length=ff.length>>1;slow=0}
+cx.globalAlpha=1;cx.clearRect(0,0,W,H);cx.globalCompositeOperation='lighter';
+for(var i=0;i<ff.length;i++){var f=ff[i];f.a+=(Math.random()-.5)*.08;f.x+=Math.cos(f.a)*f.s;f.y+=Math.sin(f.a)*f.s-.05;if(f.x<-10)f.x=W+10;if(f.x>W+10)f.x=-10;if(f.y<-10)f.y=H+10;if(f.y>H+10)f.y=-10;dot(f.x,f.y,f.r,f.c,(.35+.65*Math.abs(Math.sin(t/900+f.p)))*.9)}
+var k=0;for(i=0;i<sp.length;i++){var q=sp[i];q.x+=q.vx;q.y+=q.vy;q.vy+=.03;q.l-=.025;if(q.l>0){dot(q.x,q.y,q.r*q.l+.5,q.c,q.l);sp[k++]=q}}sp.length=k;
+requestAnimationFrame(frame)}
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches)requestAnimationFrame(frame);
+var px=0,py=0,pt='',pend=false;
+function onMove(){pend=false;if(d.body.classList.contains('off')){var r=d.documentElement.style;r.setProperty('--mx',px+'px');r.setProperty('--my',py+'px')}if(pt==='mouse')spark(px,py,1)}
+function mv(x,y,t){px=x;py=y;pt=t;if(!pend){pend=true;requestAnimationFrame(onMove)}}
+addEventListener('pointermove',function(e){mv(e.clientX,e.clientY,e.pointerType)},{passive:true});
+addEventListener('touchmove',function(e){var t=e.touches[0];if(t)mv(t.clientX,t.clientY,'touch')},{passive:true});
+})();
+</script>
+</body>
+</html>
